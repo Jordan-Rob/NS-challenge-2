@@ -20,13 +20,14 @@ body {
 
 .inputSection div{
   margin-top: 100px;
-  margin-left: 420px;
+  margin-left: 330px;
   margin-bottom: 100px;
 }
 
 form{
   display: flex;
   flex-direction: row;
+  
 }
 
 input{
@@ -57,7 +58,7 @@ button:hover{
 }
 
 .card{
-  margin: 50px;
+  margin: 40px;
   border-radius: 18px;
   border: none;
 }
