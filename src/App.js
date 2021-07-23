@@ -4,48 +4,68 @@ import getAlbumPics from './services/albumPics'
 function App() {
   const [ albumID, setAlbumID ] = useState(null)
   const [ pics, setPics] = useState([])
+  const [ notification, setNotification] = useState('')
 
   const handleChange = (event) => {
-    setAlbumID(event.target.value)
-    console.log(albumID)
+    if ( event.target.value === null){
+      pics.splice(0, pics.length)
+    }
+    else{
+      setAlbumID(event.target.value)
+      console.log(albumID)
+    }
   }
+
+  
 
   const formHandler = (event) => {
       event.preventDefault()
 
       getAlbumPics(albumID)
         .then( response => {
+          setNotification('Loading...')
+          setTimeout( () => {
+            setNotification(null)
+          }, 5000)
           pics.splice(0, pics.length)
           setPics(pics.concat(response.data))
         })
+        .catch( error => {
+            setNotification(`${error}`);
+            setTimeout( () => {
+              setNotification(null)
+            }, 5000);
+          }
+        )  
       
   }
 
   return (
     <div className="App">
-      <section className='inputSection'>
+      <section className='inputSection container'>
+        <h2>SEARCH PHOTO APP</h2>
         <div>
           <form  onSubmit={ formHandler }>
-            <input onChange= { handleChange } value={albumID} placeholder='Enter Id' type='number' required></input>
-            <button type="submit">Get Album Photos By ID</button>
+            <input className="shadow"  onChange= { handleChange } value={albumID} placeholder='Enter Id' type='number' required></input>
+            <button className="shadow" type="submit">Get Album Photos By ID</button>
           </form>
         </div>
       </section>
 
-      <section className='cardSection'>
+      <section className='cardSection container'>
 
         {
-          albumID && <div className='cards'>
+          pics.length > 1? <div className='cards row'>
             {
-              pics.length < 1? <p>Loading...</p>:
                 pics.map( 
-                  pic => <div key={pic.id} className='card'>
+                  pic => <div key={pic.id} className='shadow card col-lg-3 col-md-6 col-sm-12'>
                     <img src={pic.thumbnailUrl} alt='thumbnail' />
                     <p>{ pic.title }</p>
                   </div>
-                ).slice(0, 10)
+                )
             }
-        </div>
+        </div>:
+        <div id='tip'>Please enter valid Id to view photos</div>
         }
         
       </section>

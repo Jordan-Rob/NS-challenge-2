@@ -10,36 +10,105 @@ body {
   color: #fff;
 }
 
+.inputSection h2{
+  text-align: center;
+  margin-top: 100px;
+  color: rgb(20, 20, 106);
+  font-weight: 800;
+}
+
 
 .inputSection div{
-  margin-top: 200px;
-  margin-left: 600px;
+  margin-top: 100px;
+  margin-left: 420px;
+  margin-bottom: 100px;
+}
+
+form{
+  display: flex;
+  flex-direction: row;
 }
 
 input{
-  padding-left: 20px;
-  height: 27px;
-  border: 2px solid #003;
-  outline: none;
-  border-bottom-left-radius: 15px;
-  border-top-left-radius: 15px;
+  width: 200px !important;
+  border: none;
+  outline: none !important;
+  margin-right: 20px;
+  padding: 10px 20px;
+  border-radius: 15px ;
 }
 
 button{
-  background-color: #003;
-  height: 33px;
+  background-color: rgb(20, 20, 106);
+  color: #fff;
   border: none;
   outline: none;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  padding: 7px 12px;
-  color: #fff;
-  font-weight: 500;
+  padding: 0px 20px;
+  border-radius: 15px ;
 }
 
 button:hover{
-  color: #F8B100;
+  color: #F8B100 !important ;
   font-weight: 600;
 }
 
+.cardSection{
+  color: #003;
+}
 
+.card{
+  margin: 50px;
+  border-radius: 18px;
+  border: none;
+}
+
+img{
+  margin: 20px;
+  border-radius: 18px;
+}
+
+.cardSection p{
+  margin: 10px 25px 50px 25px;
+}
+
+#tip{
+  color: red;
+  text-align: center;
+}
+
+
+@media (max-width: 420px) {
+  .inputSection div{
+    width: 95%;
+    margin-top: 20px;
+    margin: 60px 0px 70px 0px;
+  }
+  
+  form{
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  input{
+    width: 100% !important;
+    border: none;
+    outline: none !important;
+    margin-bottom: 20px;
+  }
+  button{
+    padding: 10px 0px;
+  }
+
+  input:focus{
+    outline: none !important;
+  }
+
+  .cardSection{
+    width: 95%;
+  }
+
+  .card{
+    width: 80%;
+  }
+}
