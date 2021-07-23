@@ -4,7 +4,6 @@ import getAlbumPics from './services/albumPics'
 function App() {
   const [ albumID, setAlbumID ] = useState(null)
   const [ pics, setPics] = useState([])
-  const [ notification, setNotification] = useState('')
 
   const handleChange = (event) => {
     if ( event.target.value === null){
@@ -23,18 +22,11 @@ function App() {
 
       getAlbumPics(albumID)
         .then( response => {
-          setNotification('Loading...')
-          setTimeout( () => {
-            setNotification(null)
-          }, 5000)
           pics.splice(0, pics.length)
           setPics(pics.concat(response.data))
         })
         .catch( error => {
-            setNotification(`${error}`);
-            setTimeout( () => {
-              setNotification(null)
-            }, 5000);
+            console.log(error)
           }
         )  
       
